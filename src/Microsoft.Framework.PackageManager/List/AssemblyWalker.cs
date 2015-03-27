@@ -72,7 +72,11 @@ namespace Microsoft.Framework.PackageManager.List
             if (filepath != null && File.Exists(filepath))
             {
                 var assemblyInfo = new AssemblyInformation(filepath, processorArchitecture: null);
-                return assemblyInfo.GetDependencies();
+                var dependencies = assemblyInfo.GetDependencies();
+
+                System.Console.WriteLine("{0} => {1}", assemblyName, string.Join(", ", dependencies.ToArray()));
+
+                return dependencies;
             }
             else
             {
